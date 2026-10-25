@@ -1,0 +1,8 @@
+# Servidor estático do jogo, só HTTP na porta 80. TLS e domínio ficam com o Caddy de borda da VPS.
+:80 {
+	root * /srv
+	encode zstd gzip
+	@html path / *.html
+	header @html Cache-Control "no-cache"
+	file_server
+}
